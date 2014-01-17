@@ -1,7 +1,7 @@
 class FollowersController < ApplicationController
 
       def create
-      @follower = current_user.follows.new
+      @user = User.find params[:follow_id]
       @follower.follows_id = params[:follow_id]
       @follower.accepted = true if params[:approval_required] == false
       if @follower.save

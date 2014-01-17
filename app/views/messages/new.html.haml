@@ -1,1 +1,6 @@
 %h1 Contact Us
+
+= simple_form_for @message do |f|
+  = f.input :name
+  = f.input :email
+  = f.input :body, as: :text

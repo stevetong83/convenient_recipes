@@ -23,5 +23,9 @@ module ConvenientRecipes
       g.test_framework :rspec
     end
 
+    config.generators do |g|
+      g.factory_girl true
+    end
+
   end
 end
