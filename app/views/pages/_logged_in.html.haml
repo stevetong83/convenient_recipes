@@ -1,0 +1,33 @@
+.row
+  .span4
+    %h1 Welcome
+
+    = link_to "Add Recipe", new_recipe_path, class: 'btn btn-primary'
+    %br
+
+
+
+    %h2 Followers
+
+    - @followers.each do |follower|
+      %p
+        = link_to "#{follower.user.first_name} #{follower.user.last_name}", follower.user
+
+    %h2 Following
+
+    - @following.each do |following|
+      %p
+        = link_to "#{following.follows.first_name} #{following.follows.last_name}", following.follows
+
+
+    %h2 ALL USERS
+    - @users.each do |user|
+      %p
+        = link_to "#{user.first_name} #{user.last_name}", user
+
+  .span8
+    %h1 My Recipes
+
+    - @recipes.each do |recipe|
+      %p
+        = link_to recipe.title, recipe

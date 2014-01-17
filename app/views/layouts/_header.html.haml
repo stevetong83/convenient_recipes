@@ -1,0 +1,7 @@
+= link_to "Convenient Recipes", root_path
+
+- if current_user
+  Hello #{current_user.first_name}
+  = link_to "Sign Out", destroy_user_session_path, method: "delete"
+- else
+  = link_to'Login', new_user_session_path

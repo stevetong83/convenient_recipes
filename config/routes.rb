@@ -8,6 +8,8 @@ ConvenientRecipes::Application.routes.draw do
 
   resources :recipes
   resources :follows, only: [:create, :destroy]
+  resources :favorites, only: :create
   resources :users, only: :show
+  resources :messages, only: [:new, :create]
   
 end

@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title= page_title
+    = stylesheet_link_tag    "recipes/application", media: "all"
+    = javascript_include_tag "recipes/application"
+    = csrf_meta_tags
+  %body
+
+    .container
+      = render 'header'
+    .container
+      = render 'alerts'
+      = yield
