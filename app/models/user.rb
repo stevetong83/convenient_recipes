@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :recipes
-  has_many :followers
+  # has_many :followers, class_name: "Users" 
 
   validates :first_name, :last_name, presence: true
 

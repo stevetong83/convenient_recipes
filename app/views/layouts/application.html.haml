@@ -2,13 +2,22 @@
 %html
   %head
     %title= page_title
-    = stylesheet_link_tag    "recipes/application", media: "all"
-    = javascript_include_tag "recipes/application"
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    #login
+      = render 'layouts/login'
+    #head
+      = render 'layouts/header'
+    #menu
+      = render 'layouts/menu'
+    #alerts
+      = render 'layouts/alerts'
+    #content
+      .container
+        = yield
 
-    .container
-      = render 'header'
-    .container
-      = render 'alerts'
-      = yield
+    #foot
+      .container
+        = render 'layouts/footer'

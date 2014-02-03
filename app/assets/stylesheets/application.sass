@@ -8,6 +8,43 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
+ *= require_self
  */
+
+$dark-green: #99b70c
+$light-green: #a8d62a
+$green: #ebfcbd
+$white: #fff
+
+body 
+  color: #666666
+
+ul, li
+  padding: 0
+  margin: 0
+
+#login
+  background-color: $dark-green
+  color: $white
+  line-height: 25px
+  a 
+    color: $white
+
+#head
+  padding: 40px 0 30px 0
+  
+#menu
+  border-top: 5px solid $light-green
+  border-bottom: 1px solid $light-green
+  padding: 10px 0
+  li 
+    float: left
+    list-style-type: none
+
+#content
+  padding: 15px 0
+
+#foot
+  background-color: $green
+  padding: 25px 0

@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @users =  User.where(has_recipes: true).all
+    @users =  User.all
     if current_user
       @recipes = current_user.recipes.all
       @following = current_user.follows
