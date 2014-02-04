@@ -1,0 +1,8 @@
+%h1 New Recipe
+
+= simple_form_for @recipe do |f|
+
+  = f.input :title
+  = f.input :ingredients, as: :text, input_html: {rows: 5}
+  = f.input :instructions, as: :text, input_html: {rows: 5}
+  = f.submit class: 'btn'

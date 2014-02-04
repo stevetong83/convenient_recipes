@@ -7,7 +7,7 @@ ConvenientRecipes::Application.routes.draw do
   root to: "pages#index"
 
   resources :recipes
-  resources :follows, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   resources :favorites, only: :create
   resources :users, only: :show
   resources :messages, only: [:new, :create]

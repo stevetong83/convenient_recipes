@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
-  # field :first_name, type: String
-  # field :last_name,  type: String
+  # field :name, type: String
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,15 +8,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :recipes
-  # has_many :followers, class_name: "Users" 
+  has_many :reverse_relationships, foreign_key: "user_id", class_name: "Relationship", dependent: :destroy
+  has_many :followed_users, through: :reverse_relationships, source: :followed
 
-  validates :first_name, :last_name, presence: true
+  has_many :relationships, foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :relationships, source: :user
 
 
-
+  validates :name, presence: true
 
   def follow! user
-
+    relationship = self.reverse_relationships.build(followed_id: user.id)
+    relationship.accepted = true if user.approval_required == false
+    relationship.save
   end
 
   def favorite_recipe! recipe

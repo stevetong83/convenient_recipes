@@ -11,19 +11,19 @@
 
     - @followers.each do |follower|
       %p
-        = link_to "#{follower.user.first_name} #{follower.user.last_name}", follower.user
+        = link_to follower.name, follower
 
     %h2 Following
 
     - @following.each do |following|
       %p
-        = link_to "#{following.follows.first_name} #{following.follows.last_name}", following.follows
+        = link_to following.name, following
 
 
     %h2 ALL USERS
     - @users.each do |user|
       %p
-        = link_to "#{user.first_name} #{user.last_name}", user
+        = link_to user.name, user
 
   .span8
     %h1 My Recipes

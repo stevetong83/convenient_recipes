@@ -14,21 +14,23 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'simple_form'
 gem 'devise'
 gem 'cancan'
+
+gem "simple-navigation"
+gem 'simple_form'
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
 end
 
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
+  gem 'factory_girl_rails'
 end
 
 group :doc do

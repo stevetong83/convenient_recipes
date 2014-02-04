@@ -1,0 +1,7 @@
+%h1= @recipe.title
+
+= link_to "#{@recipe.user.first_name} #{@recipe.user.last_name}", @recipe.user
+
+= simple_format @recipe.ingredients
+
+= simple_format @recipe.instructions
