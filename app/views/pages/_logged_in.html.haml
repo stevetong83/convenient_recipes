@@ -26,8 +26,9 @@
         = link_to user.name, user
 
   .span8
-    %h1 My Recipes
-
-    - @recipes.each do |recipe|
-      %p
-        = link_to recipe.title, recipe
+    %ul
+      %li= link_to "News Feed", root_path
+      %li= link_to "My Recipes", my_recipes_path
+      %li= link_to "Favorite Recipes", favorite_recipes_path
+      
+    %h1 News Feed

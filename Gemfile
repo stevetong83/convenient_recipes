@@ -20,6 +20,8 @@ gem 'cancan'
 gem "simple-navigation"
 gem 'simple_form'
 
+gem 'friendly_id'
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'

@@ -1,7 +1,28 @@
-%h1= @recipe.title
+.row
 
-= link_to "#{@recipe.user.first_name} #{@recipe.user.last_name}", @recipe.user
+  .span4
+    - if current_user.favorite_recipes.all.include?(@recipe)
+      = link_to "Remove from Favorites", favorite_path(recipe: @recipe), method: :delete, class: 'btn btn-danger'
+    - else
+      = link_to "Favorite", favorites_path(recipe: @recipe), method: :post, class: 'btn'
 
-= simple_format @recipe.ingredients
+  .span8
 
-= simple_format @recipe.instructions
+    %h1= @recipe.title
+
+    = link_to @recipe.user.name, @recipe.user
+
+    %P
+      Ingredients: 
+      = simple_format @recipe.ingredients
+
+    %p
+      Instructions: 
+      = simple_format @recipe.instructions
+
+    %p
+      Credits: 
+      = simple_format @recipe.credits
+
+    %p
+      Reviews

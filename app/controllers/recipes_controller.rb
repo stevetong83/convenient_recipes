@@ -1,8 +1,16 @@
 class RecipesController < ApplicationController
-  before_filter :authenticate_user!, except: :show
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
+    @recipes = Recipe.all
+  end
+
+  def my_recipes
     @recipes = current_user.recipes.all
+  end
+
+  def favorite_recipes
+    @recipes = current_user.favorite_recipes.all
   end
 
   def new
@@ -10,7 +18,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = current_user.recipes.create params[:recipe]
+    @recipe = current_user.recipes.create recipe_params
     if @recipe.save
       redirect_to @recipe, notice: "Recipe created successfully."
     else
@@ -34,5 +42,11 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find params[:id]
     @recipe.destroy
     redirect_to recipes_path, notice: "Recipe has been deleted."
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:title, :ingredients, :instructions, :credits)
   end
 end

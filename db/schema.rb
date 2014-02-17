@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203203726) do
+ActiveRecord::Schema.define(version: 20140217202918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 20140203203726) do
     t.datetime "updated_at"
   end
 
+  add_index "favorites", ["recipe_id"], name: "index_favorites_on_recipe_id", using: :btree
+  add_index "favorites", ["user_id", "recipe_id"], name: "index_favorites_on_user_id_and_recipe_id", unique: true, using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
   create_table "followers", force: true do |t|
     t.integer  "user_id"
     t.integer  "recipe_id"
@@ -84,7 +88,10 @@ ActiveRecord::Schema.define(version: 20140203203726) do
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "recipes", ["slug"], name: "index_recipes_on_slug", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "user_id"
@@ -97,6 +104,18 @@ ActiveRecord::Schema.define(version: 20140203203726) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["user_id", "followed_id"], name: "index_relationships_on_user_id_and_followed_id", unique: true, using: :btree
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree
+
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.text     "review"
+    t.integer  "rating"
+    t.integer  "recipe_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["recipe_id"], name: "index_reviews_on_recipe_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -113,9 +132,11 @@ ActiveRecord::Schema.define(version: 20140203203726) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "approval_required",      default: false
+    t.string   "slug"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
 end
