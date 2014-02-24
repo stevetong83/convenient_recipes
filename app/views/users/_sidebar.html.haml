@@ -1,0 +1,24 @@
+%h1= "Welcome #{current_user.name}"
+
+= link_to "Add Recipe", new_recipe_path, class: 'btn btn-primary'
+%br
+
+
+
+%h2 Followers
+
+- @followers.each do |follower|
+  %p
+    = link_to follower.name, follower
+
+%h2 Following
+
+- @following.each do |following|
+  %p
+    = link_to following.name, following
+
+
+%h2 ALL USERS
+- @users.each do |user|
+  %p
+    = link_to user.name, user

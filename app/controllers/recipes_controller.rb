@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
+  layout 'user', only: [:my_recipes, :favorite_recipes]
+
   def index
     @recipes = Recipe.all
   end
@@ -28,6 +30,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find params[:id]
+    @reviews = @recipe.reviews.all
+    @review = Review.new
+    @ingredients = @recipe.split_ingredients
+    @grocery_list_ingredients = GroceryListIngredient.new
   end
 
   def edit
@@ -36,6 +42,12 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find params[:id]
+    @recipe.update_attributes recipe_params
+    if @recipe.save
+      redirect_to @recipe, notice: "Recipe has been updated"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -47,6 +59,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :ingredients, :instructions, :credits)
+    params.require(:recipe).permit(:name, :ingredients, :instructions, :credits)
   end
 end

@@ -1,20 +1,35 @@
 .row
 
-  .span4
+  .span8
+    %h1= @recipe.name
+    %p
+      By: 
+      = link_to @recipe.user.name, @recipe.user
+    %p
+      Number of Reviews
+    %p
+      Rating
     - if current_user.favorite_recipes.all.include?(@recipe)
       = link_to "Remove from Favorites", favorite_path(recipe: @recipe), method: :delete, class: 'btn btn-danger'
     - else
-      = link_to "Favorite", favorites_path(recipe: @recipe), method: :post, class: 'btn'
+      = link_to "Add to Favorites", favorites_path(recipe: @recipe), method: :post, class: 'btn'
 
-  .span8
+    %hr
 
-    %h1= @recipe.title
+    
 
-    = link_to @recipe.user.name, @recipe.user
+    
 
     %P
       Ingredients: 
-      = simple_format @recipe.ingredients
+    %p
+      = form_for @grocery_list_ingredients, url: create_multiple_grocery_list_ingredients_path do |f|
+        - @ingredients.each do |ingredient|
+
+          = check_box_tag "ingredients[]", "#{ingredient}"
+          = ingredient
+          %br
+        = f.submit "Add To Grocery List", class: 'btn'
 
     %p
       Instructions: 
@@ -26,3 +41,11 @@
 
     %p
       Reviews
+
+    - @reviews.each do |review|
+      %p
+        = review.review
+        %br
+        = "Rating: #{review.rating}"
+
+  .span4

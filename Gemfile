@@ -21,6 +21,7 @@ gem "simple-navigation"
 gem 'simple_form'
 
 gem 'friendly_id'
+gem 'public_activity'
 
 group :test do
   gem 'capybara'

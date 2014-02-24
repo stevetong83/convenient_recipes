@@ -1,0 +1,12 @@
+%h1 Grocery List
+
+= simple_form_for @ingredient do |f|
+  = f.input :name
+
+  = f.submit "Add Ingredient to Grocery List", class: 'btn'
+
+- @ingredients.each do |ingredient|
+
+  %p
+    = ingredient.name
+    = link_to "Remove", ingredient, confirm: "Are you sure", method: :delete

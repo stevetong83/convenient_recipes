@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title= page_title
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #login
+      = render 'layouts/login'
+    #head
+      = render 'layouts/header'
+    #menu
+      = render 'layouts/menu'
+    #alerts
+      = render 'layouts/alerts'
+    #content
+      .container
+        .row
+          .span4
+            = render 'users/sidebar'
+          .span8
+            .row
+              = render 'users/menu'
+            .row
+              = yield
+
+    #foot
+      .container
+        = render 'layouts/footer'

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   # field :name, type: String
   # field :slug, type: String
+  # field :approval_required, type: Boolean, default: false
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
@@ -12,6 +13,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :recipes
+  has_many :grocery_list_ingredients, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   # User Following Relationships
   has_many :reverse_relationships, foreign_key: "user_id", class_name: "Relationship", dependent: :destroy

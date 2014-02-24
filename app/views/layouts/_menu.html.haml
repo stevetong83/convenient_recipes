@@ -1,5 +1,5 @@
 .container
-  %ul
-    %li Home
-    %li Contact
-    %li Recipes
+  %ul.nav
+    %li= link_to "Home", root_path
+    %li= link_to "Recipes", recipes_path
+    %li= link_to "Contact", new_message_path

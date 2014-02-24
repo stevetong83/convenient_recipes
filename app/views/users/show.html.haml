@@ -1,7 +1,20 @@
-= @user.name
+.row
+  .span4
+    = @user.name
+    %p
+      Recipe Count: 
+      = @user.recipes.count
 
-- if current_user && current_user != @user
-  - unless current_user.reverse_relationships.pluck(:followed_id).include?(@user.id)
-    = link_to "Follow", relationships_path(followed_id: @user.id, approval_required: @user.approval_required), method: :post, class: "btn btn-primary"
-  - else
-    = link_to "Unfollow", relationship_path(followed_id: @user.id), method: :delete, confirm: "Are you sure you want to quit following #{@user.name}", class: "btn btn-danger"
+    - if current_user && current_user != @user
+      - unless current_user.reverse_relationships.pluck(:followed_id).include?(@user.id)
+        = link_to "Follow", relationships_path(followed_id: @user.id, approval_required: @user.approval_required), method: :post, class: "btn btn-primary"
+      - else
+        = link_to "Unfollow", relationship_path(followed_id: @user.id), method: :delete, confirm: "Are you sure you want to quit following #{@user.name}", class: "btn btn-danger"
+
+  .span8
+    %h1= "#{@user.name}'s Recipes"
+
+    - @recipes.each do |recipe|
+
+      %p
+        = recipe.name
