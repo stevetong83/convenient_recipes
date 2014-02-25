@@ -3,19 +3,22 @@
 = link_to "Add Recipe", new_recipe_path, class: 'btn btn-primary'
 %br
 
+%h2 
+  Recipes: 
+  = link_to @recipes.count, current_user
+
+%h2
+  Followers: 
+  = link_to @followers.count, followers_path
 
 
-%h2 Followers
 
-- @followers.each do |follower|
-  %p
-    = link_to follower.name, follower
 
-%h2 Following
+%h2
+  Following: 
+  = link_to @following.count, following_path
 
-- @following.each do |following|
-  %p
-    = link_to following.name, following
+
 
 
 %h2 ALL USERS

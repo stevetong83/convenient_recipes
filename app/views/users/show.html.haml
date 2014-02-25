@@ -5,6 +5,12 @@
       Recipe Count: 
       = @user.recipes.count
 
+    %p
+      Following: 
+
+    %p 
+      Followers: 
+
     - if current_user && current_user != @user
       - unless current_user.reverse_relationships.pluck(:followed_id).include?(@user.id)
         = link_to "Follow", relationships_path(followed_id: @user.id, approval_required: @user.approval_required), method: :post, class: "btn btn-primary"
@@ -17,4 +23,4 @@
     - @recipes.each do |recipe|
 
       %p
-        = recipe.name
+        = link_to recipe.name, recipe

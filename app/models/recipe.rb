@@ -8,11 +8,19 @@ class Recipe < ActiveRecord::Base
   # field :cook_time,     type: integer
   # field :credits,       type: text
   # field :public,        type: Boolean,      default: true
+  # field :category_id
+
+  # field :low_calorie
+  # field :gluten_free
+  # field :vegetarian
+
+  # indexes :user_id
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
   belongs_to :user
+  belongs_to :category
   
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy

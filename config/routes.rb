@@ -16,6 +16,9 @@ ConvenientRecipes::Application.routes.draw do
   get '/grocery_list', to: 'grocery_list_ingredients#index'
   get '/my_recipes', to: 'recipes#my_recipes'
   get '/favorite_recipes', to: 'recipes#favorite_recipes'
+  get '/following', to: 'users#following'
+  get '/followers', to: 'users#followers'
+  get '/settings', to: 'users#settings'
 
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]

@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.renderer = Your::Custom::Renderer
 
   # Specify the class that will be applied to active navigation items. Defaults to 'selected'
-  # navigation.selected_class = 'your_selected_class'
+  navigation.selected_class = 'active'
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
@@ -32,6 +32,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary|
+
+    primary.dom_class = 'nav'
     # Add an item to the primary navigation. The following params apply:
     # key - a symbol which uniquely defines your navigation item in the scope of the primary_navigation
     # name - will be displayed in the rendered navigation. This can also be a call to your I18n-framework.
@@ -49,15 +51,11 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
     #
-    primary.item :home, 'Home', root_path
-    primary.item :recipes, 'Recipes', recipes_path
-    primary.item :contact, 'Contact', messages_path
-
-    # Add an item which has a sub navigation (same params, but with block)
-    # primary.item :key_2, 'name', url, options do |sub_nav|
-    #   # Add an item to the sub navigation (same params again)
-    #   sub_nav.item :key_2_1, 'name', url, options
-    # end
+    primary.item :news_feed, 'News Feed', root_path
+    primary.item :my_recipes, 'My Recipes', my_recipes_path
+    primary.item :news_feed, 'Favorite Recipes', favorite_recipes_path
+    primary.item :news_feed, 'Grocery List', grocery_list_path
+    primary.item :news_feed, 'Settings', settings_path
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.
     # Conditions are part of the options. They are evaluated in the context of the views,

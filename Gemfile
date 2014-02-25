@@ -19,6 +19,7 @@ gem 'cancan'
 
 gem "simple-navigation"
 gem 'simple_form'
+gem "simple-navigation"
 
 gem 'friendly_id'
 gem 'public_activity'

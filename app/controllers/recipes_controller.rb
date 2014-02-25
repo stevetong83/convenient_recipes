@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
-  layout 'user', only: [:my_recipes, :favorite_recipes]
+  layout 'user', only: [:my_recipes, :favorite_recipes, :new]
 
   def index
     @recipes = Recipe.all

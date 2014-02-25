@@ -8,9 +8,14 @@ class CreateRecipes < ActiveRecord::Migration
       t.integer :prep_time
       t.integer :cook_time
       t.text :credits
-      t.boolean :public
+      t.boolean :public, default: true
+      t.boolean :low_calorie
+      t.boolean :gluten_free
+      t.boolean :vegetarian
+      t.integer :serving_size
 
       t.timestamps
     end
+    add_index :recipes, :user_id
   end
 end
